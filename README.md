@@ -69,17 +69,6 @@ add_filter( 'livetickr_cdn_url', function () {
 } );
 ```
 
-### `livetickr_app_url`
-
-The origin of the Livetickr application, where the API lives. Defaults to
-`https://api.livetickr.io`.
-
-Nothing calls it yet — the plugin makes no request of its own, it prints a tag and the browser
-does the rest. It is separate from the CDN on purpose: when something server-side does need
-the API, reaching for "the base URL" would send it to a CDN edge that has no API on it, and a
-request landing in a cache instead of the application is the kind of wrong that looks like it
-works.
-
 ### `livetickr_script_attributes`
 
 The loader tag's attributes, as an `name => value` map. `true` renders a valueless attribute.

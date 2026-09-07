@@ -8,6 +8,27 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * The origin serving embed.js.
+ *
+ * @return string Origin without a trailing slash.
+ */
+function livetickr_cdn_url() {
+	/**
+	 * Filters the origin the embed loader is served from.
+	 *
+	 * Whichever host serves embed.js also receives the feed requests it makes,
+	 * so this one value moves the entire reader surface — which is what makes
+	 * it the right knob for pointing an install at staging, at the application
+	 * directly, or at a customer's own CNAME.
+	 *
+	 * @param string $cdn_url Origin without a trailing slash.
+	 */
+	$cdn_url = apply_filters( 'livetickr_cdn_url', LIVETICKR_DEFAULT_CDN_URL );
+
+	return untrailingslashit( trim( (string) $cdn_url ) );
+}
+
+/**
  * Renders a ticker: a wrapper with the loader tag inside it.
  *
  * The loader is printed inline instead of enqueued, which is unusual enough to
