@@ -21,5 +21,9 @@ composer.lock export-ignore
 
 # Translation sources. WordPress reads the compiled .mo at runtime and the .json
 # for the block editor's strings; .po and .pot are what we edit to produce them.
-/languages/*.po export-ignore
-/languages/*.pot export-ignore
+#
+# Unanchored on purpose, so this also covers the ones the update checker ships
+# in vendor/. Anchored at /languages/ it only caught ours, and 36 files of
+# somebody else's translation sources rode along.
+*.po export-ignore
+*.pot export-ignore
