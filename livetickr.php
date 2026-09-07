@@ -96,15 +96,19 @@ $livetickr_update_checker->getVcsApi()->enableReleaseAssets( '/livetickr\.zip/' 
  * page reaches out to us to draw them, nothing to log, and a site behind a
  * firewall still gets them.
  *
- * One SVG per surface covers every screen density. Core prefers the `svg` key
- * over `2x` and `1x` for the icon, and paints the banner as a CSS background
- * with `background-size: cover`, so there is no second file to keep in step.
+ * The icon is a single SVG, which covers every screen density on its own: core
+ * prefers the `svg` key over `2x` and `1x`. The banner is a designed graphic
+ * and comes as the two sizes wordpress.org defines, 772x250 and 1544x500, which
+ * core maps to `low` and `high` and swaps at a device pixel ratio of 1.5.
  *
- * The banner is composed for how core renders it, which is worth knowing before
- * editing it: the plugin name is drawn over the banner in white at 30px, 174px
- * down, so the lower left has to stay empty, and `cover` with the default
- * top-left position means any crop happens on the right. Hence the mark at the
- * top left on a flat ink ground, and no wordmark of our own.
+ * Before replacing a banner, know how core draws over it. It paints the file as
+ * a CSS background with `background-size: cover` from the top left, so any crop
+ * happens on the right and at the bottom. Then it writes the plugin name across
+ * it: white, 30px, in a nearly opaque dark pill about 170px wide, occupying
+ * y 174 to 224 of the 772x250 file (y 348 to 448 at double size). Anything drawn
+ * in that band is covered. The current pair keeps all content between y 30 and
+ * y 160, and within x 44 to 476, so it clears the pill and survives a narrow
+ * modal. Measured, not assumed.
  */
 $livetickr_update_checker->addFilter(
 	'pre_inject_update',
@@ -125,11 +129,9 @@ $livetickr_update_checker->addFilter(
 		// Guarded because this can be false or null: the caller only checks for
 		// that after the filter has run.
 		if ( is_object( $info ) ) {
-			$banner = plugins_url( 'assets/banner.svg', LIVETICKR_FILE );
-
 			$info->banners = array(
-				'low'  => $banner,
-				'high' => $banner,
+				'low'  => plugins_url( 'assets/banner-772x250.png', LIVETICKR_FILE ),
+				'high' => plugins_url( 'assets/banner-1544x500.png', LIVETICKR_FILE ),
 			);
 		}
 
