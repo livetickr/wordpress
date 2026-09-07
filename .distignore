@@ -1,7 +1,0 @@
-.git
-.gitignore
-.distignore
-.github
-.claude
-node_modules
-vendor

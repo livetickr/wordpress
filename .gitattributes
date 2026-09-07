@@ -1,0 +1,25 @@
+# What does not belong in a released plugin.
+#
+# `export-ignore` is read by `git archive`, which is how the release workflow
+# builds livetickr.zip, and by GitHub when it generates the "Source code" ZIP of
+# a release. That second one matters more than it looks: the updater falls back
+# to that archive when a release carries no ZIP of ours, so anything left in
+# here can end up installed on a customer's site.
+#
+# `vendor/` is deliberately absent from this list. It holds the update checker
+# the plugin loads at runtime, and a plugin cannot run composer on the way in.
+
+/.github/ export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+README.md export-ignore
+
+# Dependency manifests. The installed result ships in vendor/, the manifests
+# only describe how it got there.
+composer.json export-ignore
+composer.lock export-ignore
+
+# Translation sources. WordPress reads the compiled .mo at runtime and the .json
+# for the block editor's strings; .po and .pot are what we edit to produce them.
+/languages/*.po export-ignore
+/languages/*.pot export-ignore

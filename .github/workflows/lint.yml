@@ -22,8 +22,11 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: none
 
+      # vendor/ is pruned: it is committed because the plugin loads the update
+      # checker from it, but it is somebody else's code, held to somebody else's
+      # supported PHP range, and a syntax error in it is not ours to fix here.
       - name: Lint
-        run: find . -name '*.php' -print0 | xargs -0 -n1 -P4 php -l
+        run: find . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n1 -P4 php -l
 
   plugin-check:
     name: Plugin Check
@@ -34,10 +37,15 @@ jobs:
       # Checked against what actually ships, not the repository: the repo
       # legitimately holds files (.github, .gitignore) that a distributed
       # plugin must not.
+      #
+      # Built the same way the release is, with git archive and the export-ignore
+      # rules in .gitattributes, so this checks the artifact customers get rather
+      # than a second approximation of it.
       - name: Build the distributable
         run: |
-          mkdir -p build/livetickr
-          rsync -a --exclude-from=.distignore ./ build/livetickr/
+          mkdir -p build
+          git archive --format=tar --prefix=livetickr/ HEAD | tar -C build -xf -
+          ls build/livetickr
 
       - uses: shivammathur/setup-php@v2
         with:
