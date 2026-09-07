@@ -27,10 +27,17 @@ define( 'LIVETICKR_PATH', plugin_dir_path( __FILE__ ) );
  *
  * Whichever host serves the loader also receives the feed requests it makes:
  * embed.js derives the feed URL from its own script src rather than being told
- * one, so this single value moves the whole reader surface. Override it with
- * the `livetickr_cdn_url` filter rather than editing this file.
+ * one, so this single value moves the whole reader surface.
+ *
+ * Guarded so a site can set it in wp-config.php, which is the point of having
+ * it as a constant at all — the plugin has no settings screen, and one line in
+ * wp-config is a good deal less to ask than a filter in a mu-plugin. The
+ * `livetickr_cdn_url` filter still applies on top, for anything that needs to
+ * decide per request.
  */
-define( 'LIVETICKR_DEFAULT_CDN_URL', 'https://cdn.livetickr.io' );
+if ( ! defined( 'LIVETICKR_CDN_URL' ) ) {
+	define( 'LIVETICKR_CDN_URL', 'https://cdn.livetickr.io' );
+}
 
 require_once LIVETICKR_PATH . 'includes/ticker-id.php';
 require_once LIVETICKR_PATH . 'includes/compat.php';

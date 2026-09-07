@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-07T07:40:29+00:00\n"
+"POT-Creation-Date: 2026-09-07T07:42:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: livetickr\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Embed a Livetickr live ticker with a block or a shortcode. Paste the ticker ID, the feed does the rest."
 msgstr ""
 
-#: includes/render.php:153
+#: includes/render.php:157
 msgid "Livetickr:"
 msgstr ""
 

@@ -10,6 +10,10 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The origin serving embed.js.
  *
+ * LIVETICKR_CDN_URL is the configured value — settable in wp-config.php — and
+ * the filter runs on top of it, so always ask through here rather than reading
+ * the constant.
+ *
  * @return string Origin without a trailing slash.
  */
 function livetickr_cdn_url() {
@@ -23,7 +27,7 @@ function livetickr_cdn_url() {
 	 *
 	 * @param string $cdn_url Origin without a trailing slash.
 	 */
-	$cdn_url = apply_filters( 'livetickr_cdn_url', LIVETICKR_DEFAULT_CDN_URL );
+	$cdn_url = apply_filters( 'livetickr_cdn_url', LIVETICKR_CDN_URL );
 
 	return untrailingslashit( trim( (string) $cdn_url ) );
 }

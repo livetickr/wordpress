@@ -69,11 +69,11 @@ The ticker's appearance comes from Livetickr, not from this plugin, so it stays 
 
 = Can I point the plugin at a different Livetickr host? =
 
-Yes, with the `livetickr_cdn_url` filter:
+Yes, with a constant in `wp-config.php`:
 
-`add_filter( 'livetickr_cdn_url', function () { return 'https://cdn.example.com'; } );`
+`define( 'LIVETICKR_CDN_URL', 'https://cdn.example.com' );`
 
-That is the host serving the loader script, which is also the host it fetches the ticker from.
+That is the host serving the loader script, which is also the host it fetches the ticker from. A `livetickr_cdn_url` filter is available too, for deciding it per request.
 
 == Changelog ==
 

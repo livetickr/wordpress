@@ -54,14 +54,25 @@ echo do_shortcode( '[livetickr id="Ab3xY9kLmN01"]' );
 
 ## Filters
 
+### `LIVETICKR_CDN_URL`
+
+Not a filter but a constant, because it is the one thing a site is likely to change and the
+plugin has no settings screen. Set it in `wp-config.php`:
+
+```php
+define( 'LIVETICKR_CDN_URL', 'https://cdn.example.com' );
+```
+
+Defaults to `https://cdn.livetickr.io`. Whichever host serves the loader also receives the feed
+requests it makes — `embed.js` derives the feed URL from its own script `src` — so this one
+value moves the whole reader surface. That makes it the knob for pointing an install at
+staging, at the application directly, or at a customer's own CNAME.
+
 ### `livetickr_cdn_url`
 
-The origin serving `embed.js`. Defaults to `https://cdn.livetickr.io`.
-
-Whichever host serves the loader also receives the feed requests it makes — `embed.js` derives
-the feed URL from its own script `src` — so this one value moves the whole reader surface.
-That makes it the knob for pointing an install at staging, at the application directly, or at
-a customer's own CNAME.
+The same origin as a filter, applied on top of the constant, for anything that has to decide
+per request. Read the origin through `livetickr_cdn_url()` rather than the constant so the
+filter is not bypassed.
 
 ```php
 add_filter( 'livetickr_cdn_url', function () {
