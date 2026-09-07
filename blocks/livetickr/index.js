@@ -19,6 +19,35 @@
 	var sprintf = i18n.sprintf;
 
 	/**
+	 * A feed glyph, drawn inline.
+	 *
+	 * Not components.Icon: inside the editor canvas iframe the Dashicons font
+	 * is not loaded, so an icon slug renders as nothing at all. Deliberately a
+	 * generic three-bar feed mark rather than a redrawn Livetickr logo —
+	 * approximating a wordmark from a raster asset reads worse than not using
+	 * it. Swap in the real SVG when there is one.
+	 *
+	 * @param {number} size Edge length in pixels.
+	 * @return {Object} Element.
+	 */
+	function feedGlyph( size ) {
+		return el(
+			'svg',
+			{
+				width: size,
+				height: size,
+				viewBox: '0 0 24 24',
+				fill: 'currentColor',
+				'aria-hidden': 'true',
+				focusable: 'false',
+			},
+			el( 'rect', { x: 4, y: 5, width: 16, height: 3.4, rx: 1.7 } ),
+			el( 'rect', { x: 4, y: 10.3, width: 11, height: 3.4, rx: 1.7 } ),
+			el( 'rect', { x: 4, y: 15.6, width: 6, height: 3.4, rx: 1.7 } )
+		);
+	}
+
+	/**
 	 * Reads a ticker ID out of user input.
 	 *
 	 * Mirrors livetickr_ticker_id_from_input() in includes/ticker-id.php —
@@ -144,6 +173,8 @@
 	}
 
 	blocks.registerBlockType( 'livetickr/ticker', {
+		icon: feedGlyph( 24 ),
+
 		edit: function ( props ) {
 			var tickerId = props.attributes.tickerId;
 			var blockProps = blockEditor.useBlockProps();
@@ -188,7 +219,7 @@
 						el(
 							components.Placeholder,
 							{
-								icon: 'rss',
+								icon: feedGlyph( 24 ),
 								label: __( 'Livetickr', 'livetickr' ),
 								instructions: __(
 									'Which ticker should appear here?',
@@ -218,14 +249,14 @@
 						el(
 							'span',
 							{ className: 'livetickr-card__icon' },
-							el( components.Icon, { icon: 'rss' } )
+							feedGlyph( 18 )
 						),
 						el(
 							'span',
 							{ className: 'livetickr-card__text' },
 							el(
-								'strong',
-								null,
+								'span',
+								{ className: 'livetickr-card__name' },
 								__( 'Livetickr', 'livetickr' )
 							),
 							el(
@@ -249,6 +280,7 @@
 						el(
 							components.Button,
 							{
+								className: 'livetickr-card__change',
 								variant: 'secondary',
 								size: 'small',
 								onClick: function () {

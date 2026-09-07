@@ -3,8 +3,97 @@
  *
  * Nothing here ships to the front end: on a published page the feed brings its
  * own styles, and the plugin adds none of its own.
+ *
+ * The filled card is deliberately branded while the empty state stays native
+ * WordPress. They are doing different jobs — the empty state is a form and
+ * should feel like the editor around it, the filled card stands in for the
+ * ticker and should read as Livetickr, the same way the dashboard's own
+ * preview header does.
  */
 
+.livetickr-card {
+	/* Brand palette, mirroring resources/css/app.css in the Livetickr app.
+	   The pairing rule matters: the lime is only ever set against ink, never
+	   against white, so the icon glyph is dark on the accent rather than
+	   light. */
+	--livetickr-brand: #c2f04b;
+	--livetickr-ink: #0a0a0a;
+	--livetickr-on-ink: #f5f5f2;
+	--livetickr-on-ink-muted: #9a968a;
+
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 16px 18px;
+	border-radius: 0.625rem;
+	background: var(--livetickr-ink);
+	color: var(--livetickr-on-ink);
+}
+
+.livetickr-card__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	flex-shrink: 0;
+	border-radius: 8px;
+	background: var(--livetickr-brand);
+	color: var(--livetickr-ink);
+}
+
+.livetickr-card__text {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	min-width: 0;
+	gap: 1px;
+	line-height: 1.45;
+}
+
+.livetickr-card__name {
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: var(--livetickr-on-ink);
+}
+
+.livetickr-card__id {
+	font-family: Menlo, Consolas, monaco, monospace;
+	font-size: 12px;
+	color: var(--livetickr-on-ink-muted);
+	overflow-wrap: anywhere;
+}
+
+.livetickr-card__hint {
+	font-size: 12px;
+	color: var(--livetickr-on-ink-muted);
+}
+
+/* The editor's secondary button is drawn for a light surface — its blue text
+   and faint border all but vanish on the ink. Restated here as a quiet outline
+   in the card's own palette; the lime stays reserved for the accent so it does
+   not compete with a button nobody needs to find quickly. */
+.livetickr-card .components-button.livetickr-card__change {
+	flex-shrink: 0;
+	border: 1px solid rgba( 245, 245, 242, 0.28 );
+	box-shadow: none;
+	background: transparent;
+	color: var(--livetickr-on-ink);
+}
+
+.livetickr-card .components-button.livetickr-card__change:hover:not(:disabled) {
+	border-color: rgba( 245, 245, 242, 0.5 );
+	background: rgba( 245, 245, 242, 0.1 );
+	color: var(--livetickr-on-ink);
+}
+
+.livetickr-card .components-button.livetickr-card__change:focus-visible {
+	border-color: var(--livetickr-brand);
+	box-shadow: 0 0 0 1px var(--livetickr-brand);
+	outline: 2px solid transparent;
+}
+
+/* Sidebar and placeholder: native editor styling, only spacing to fix. */
 .livetickr-form .components-button {
 	margin-top: 8px;
 }
@@ -15,44 +104,4 @@
 
 .livetickr-sidebar-current {
 	margin: 0 0 16px;
-}
-
-.livetickr-card {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding: 16px;
-	border: 1px solid #e0e0e0;
-	border-radius: 4px;
-	background: #f6f7f7;
-}
-
-.livetickr-card__icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 32px;
-	height: 32px;
-	flex-shrink: 0;
-	border-radius: 4px;
-	background: #1e1e1e;
-	color: #fff;
-}
-
-.livetickr-card__text {
-	display: flex;
-	flex-direction: column;
-	flex-grow: 1;
-	min-width: 0;
-	line-height: 1.4;
-}
-
-.livetickr-card__id {
-	font-family: Menlo, Consolas, monaco, monospace;
-	font-size: 12px;
-}
-
-.livetickr-card__hint {
-	color: #757575;
-	font-size: 12px;
 }
