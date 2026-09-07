@@ -35,8 +35,6 @@ This plugin loads a script from the Livetickr content delivery network (`https:/
 
 The requests transmit the visitor's IP address, browser user agent and the address of the page the ticker is on, which is how Livetickr authorises the embed and counts readers. No data is sent for pages without a ticker.
 
-Service provided by Livetickr: [privacy policy](https://livetickr.io/privacy-policy/) · [legal disclosure](https://livetickr.io/legal-disclosure/).
-
 == Installation ==
 
 1. Upload the plugin to `/wp-content/plugins/livetickr` or install the ZIP under *Plugins > Add New*.
