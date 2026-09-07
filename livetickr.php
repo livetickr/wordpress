@@ -3,7 +3,7 @@
  * Plugin Name:       Livetickr
  * Plugin URI:        https://livetickr.io/?utm_source=wp_plugin&utm_medium=plugins_list&utm_campaign=livetickr_wp&utm_content=plugin_uri
  * Description:       Embed a Livetickr live ticker with a block or a shortcode. Paste the ticker ID, the feed does the rest.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Livetickr
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-define( 'LIVETICKR_VERSION', '0.1.1' );
+define( 'LIVETICKR_VERSION', '0.1.2' );
 define( 'LIVETICKR_FILE', __FILE__ );
 define( 'LIVETICKR_PATH', plugin_dir_path( __FILE__ ) );
 

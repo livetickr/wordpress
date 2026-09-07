@@ -4,7 +4,7 @@ Tags: live ticker, liveblog, live blog, embed, block
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ Add the **Livetickr** block, paste the ticker ID, done. The ticker updates itsel
 * Asks the common caching and optimisation plugins to leave the ticker's script alone, because moving it breaks where the ticker renders.
 * English and German.
 
-Full documentation: [Embedding in WordPress](https://livetickr.io/docs/embed/wordpress/?utm_source=wp_plugin&utm_medium=readme.txt&utm_campaign=livetickr_wp&utm_content=docs_wordpress).
+Full documentation: [Livetickr documentation](https://livetickr.io/docs/?utm_source=wp_plugin&utm_medium=readme.txt&utm_campaign=livetickr_wp&utm_content=docs_wordpress).
 
 = What it needs =
 
@@ -73,6 +73,10 @@ The ticker's appearance comes from Livetickr, not from this plugin, so it stays 
 English and German. The German translation is the `de_DE` locale, which addresses you informally. Sites set to another German locale, such as `de_DE_formal` or `de_AT`, see the English original: WordPress does not fall back from one German locale to another for plugin translations.
 
 == Changelog ==
+
+= 0.1.2 =
+* Added: the plugin's own icon and banner on the WordPress update screens, instead of the generic placeholder.
+* Fixed: the documentation link in this readme led to a page that does not exist yet. It now opens the documentation index, like the one on the Plugins screen.
 
 = 0.1.1 =
 * Fixed: the Documentation link on the Plugins screen led to a page that does not exist yet. It now opens the documentation index.
