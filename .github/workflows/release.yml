@@ -81,6 +81,15 @@ jobs:
             echo "::error::Tag $version does not match readme.txt Stable tag ($stable)."
             exit 1
           fi
+          # LIVETICKR_VERSION is what the block's script and style are registered
+          # under, so it is the cache buster in every editor's browser. Left
+          # behind on a release, the new block assets keep losing to the cached
+          # old ones, which looks like the update not having installed.
+          constant="$(sed -n "s/^define( *'LIVETICKR_VERSION', *'\([^']*\)'.*/\1/p" livetickr.php | head -1)"
+          if [ "$version" != "$constant" ]; then
+            echo "::error::Tag $version does not match LIVETICKR_VERSION ($constant)."
+            exit 1
+          fi
 
       # git archive rather than a copy-and-exclude: it applies the export-ignore
       # rules in .gitattributes, which is the same list GitHub applies to the
