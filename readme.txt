@@ -4,7 +4,7 @@ Tags: live ticker, liveblog, live blog, embed, block
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,9 @@ The ticker's appearance comes from Livetickr, not from this plugin, so it stays 
 English and German. The German translation is the `de_DE` locale, which addresses you informally. Sites set to another German locale, such as `de_DE_formal` or `de_AT`, see the English original: WordPress does not fall back from one German locale to another for plugin translations.
 
 == Changelog ==
+
+= 0.1.1 =
+* Fixed: the Documentation link on the Plugins screen led to a page that does not exist yet. It now opens the documentation index.
 
 = 0.1.0 =
 * First release: Livetickr block, `[livetickr]` shortcode, and compatibility handling for caching and optimisation plugins.
