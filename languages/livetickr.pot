@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-07T08:41:07+00:00\n"
+"POT-Creation-Date: 2026-09-07T08:48:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: livetickr\n"
@@ -47,65 +47,65 @@ msgstr ""
 msgid "That does not look like a ticker ID. Expected 12 letters and digits, or the snippet from the ticker's Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:150
+#: blocks/livetickr/index.js:144
 msgid "That is the internal ID from the dashboard URL, which cannot be embedded. The ticker ID is in the ticker’s Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:156
+#: blocks/livetickr/index.js:150
 msgid "That does not look like a ticker ID. Expected 12 letters and digits, or the snippet from the ticker’s Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:198
+#: blocks/livetickr/index.js:192
 msgid "e.g. Ab3xY9kLmN01"
 msgstr ""
 
-#: blocks/livetickr/index.js:199
+#: blocks/livetickr/index.js:193
 msgid "Paste the ticker ID, or the whole snippet from the ticker’s Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:248
+#: blocks/livetickr/index.js:242
 msgid "Ticker"
 msgstr ""
 
-#: blocks/livetickr/index.js:259
+#: blocks/livetickr/index.js:253
 msgid "Replace with"
 msgstr ""
 
-#: blocks/livetickr/index.js:260
-#: blocks/livetickr/index.js:288
+#: blocks/livetickr/index.js:254
+#: blocks/livetickr/index.js:282
 msgid "Ticker ID"
 msgstr ""
 
-#: blocks/livetickr/index.js:262
+#: blocks/livetickr/index.js:256
 msgid "Replace ticker"
 msgstr ""
 
-#: blocks/livetickr/index.js:263
-#: blocks/livetickr/index.js:289
+#: blocks/livetickr/index.js:257
+#: blocks/livetickr/index.js:283
 msgid "Add ticker"
 msgstr ""
 
-#: blocks/livetickr/index.js:281
+#: blocks/livetickr/index.js:275
 msgid "Which ticker should appear here?"
 msgstr ""
 
 #. translators: %s: the ticker's ID.
-#: blocks/livetickr/index.js:324
+#: blocks/livetickr/index.js:318
 #, js-format
 msgid "Ticker %s"
 msgstr ""
 
-#: blocks/livetickr/index.js:331
+#: blocks/livetickr/index.js:325
 msgid "The live ticker appears here on the published page."
 msgstr ""
 
-#: blocks/livetickr/index.js:347
+#: blocks/livetickr/index.js:341
 msgid "Change"
 msgstr ""
 
 #: blocks/livetickr/block.json
 msgctxt "block title"
-msgid "Livetickr.io"
+msgid "Livetickr"
 msgstr ""
 
 #: blocks/livetickr/block.json

@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "livetickr/ticker",
 	"version": "0.1.0",
-	"title": "Livetickr.io",
+	"title": "Livetickr",
 	"category": "embed",
 	"icon": "rss",
 	"description": "Embed a Livetickr live ticker. Paste the ticker ID or the snippet from its Embed dialog.",

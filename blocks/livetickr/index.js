@@ -85,8 +85,7 @@
 	}
 
 	/**
-	 * The wordmark, with the domain suffix set back the way the marketing art
-	 * does it: name in the ground's contrast colour, `.io` muted.
+	 * The wordmark.
 	 *
 	 * Not translatable — it is a name, not a string. Weight and tracking
 	 * follow brand-lockup.tsx in the app (extrabold, -0.04em); its Archivo is
@@ -96,12 +95,7 @@
 	 * @return {Object} Element.
 	 */
 	function wordmark() {
-		return el(
-			'span',
-			{ className: 'livetickr-wordmark' },
-			'Livetickr',
-			el( 'span', { className: 'livetickr-wordmark__tld' }, '.io' )
-		);
+		return el( 'span', { className: 'livetickr-wordmark' }, 'Livetickr' );
 	}
 
 	/**
