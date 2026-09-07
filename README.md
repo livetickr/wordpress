@@ -1,3 +1,5 @@
+![Livetickr for WordPress](assets/banner-1544x500.png)
+
 # Livetickr for WordPress
 
 Embed a [Livetickr](https://livetickr.io/?utm_source=wp_plugin&utm_medium=readme.md&utm_campaign=livetickr_wp&utm_content=intro) live ticker in a post or page with a block or a
