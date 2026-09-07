@@ -154,21 +154,29 @@
 	}
 
 	/**
-	 * The ticker ID form, used both in the placeholder and the sidebar.
+	 * The ticker ID field, used in the placeholder and in the sidebar.
 	 *
-	 * @param {Object} props          Component props.
-	 * @param {Function} props.onCommit Called with a resolved ticker ID.
-	 * @param {string} props.label    Field label.
-	 * @param {string} props.submit   Submit button label.
+	 * Seeded with the ID that is already set rather than starting blank. The
+	 * attribute is only written on submit, so leaving the form — or submitting
+	 * the value untouched — keeps the ticker exactly as it was. Opening this
+	 * to change a ticker should never look like the old one was discarded the
+	 * moment you clicked.
+	 *
+	 * @param {Object}   props            Component props.
+	 * @param {string}   props.value      The ID currently set, or ''.
+	 * @param {string}   props.submit     Submit button label.
+	 * @param {Function} props.onSubmit   Called with a resolved ticker ID.
+	 * @param {Function} [props.onCancel] Renders a Cancel button when given.
 	 * @return {Object} Element.
 	 */
 	function TickerForm( props ) {
-		var draftState = useState( '' );
+		var draftState = useState( props.value || '' );
 		var draft = draftState[ 0 ];
 		var setDraft = draftState[ 1 ];
 		var errorState = useState( '' );
 		var error = errorState[ 0 ];
 		var setError = errorState[ 1 ];
+		var cancel = 'function' === typeof props.onCancel ? props.onCancel : null;
 
 		function commit() {
 			var tickerId = readTickerId( draft );
@@ -179,15 +187,14 @@
 			}
 
 			setError( '' );
-			setDraft( '' );
-			props.onCommit( tickerId );
+			props.onSubmit( tickerId );
 		}
 
 		return el(
 			'div',
 			{ className: 'livetickr-form' },
 			el( components.TextControl, {
-				label: props.label,
+				label: __( 'Ticker ID', 'livetickr' ),
 				value: draft,
 				placeholder: __( 'e.g. Ab3xY9kLmN01', 'livetickr' ),
 				help: __( 'Paste the ticker ID, or the whole snippet from the ticker’s Embed dialog.', 'livetickr' ),
@@ -202,6 +209,12 @@
 					if ( 'Enter' === event.key ) {
 						event.preventDefault();
 						commit();
+						return;
+					}
+
+					if ( 'Escape' === event.key && cancel ) {
+						event.preventDefault();
+						cancel();
 					}
 				},
 				__next40pxDefaultSize: true,
@@ -211,14 +224,29 @@
 				? el( components.Notice, { status: 'error', isDismissible: false }, error )
 				: null,
 			el(
-				components.Button,
-				{
-					variant: 'primary',
-					disabled: '' === draft.trim(),
-					onClick: commit,
-					__next40pxDefaultSize: true,
-				},
-				props.submit
+				'div',
+				{ className: 'livetickr-form__actions' },
+				el(
+					components.Button,
+					{
+						variant: 'primary',
+						disabled: '' === draft.trim(),
+						onClick: commit,
+						__next40pxDefaultSize: true,
+					},
+					props.submit
+				),
+				cancel
+					? el(
+							components.Button,
+							{
+								variant: 'tertiary',
+								onClick: cancel,
+								__next40pxDefaultSize: true,
+							},
+							__( 'Cancel', 'livetickr' )
+					  )
+					: null
 			)
 		);
 	}
@@ -229,10 +257,20 @@
 		edit: function ( props ) {
 			var tickerId = props.attributes.tickerId;
 			var blockProps = blockEditor.useBlockProps();
+			// "No ticker yet" and "changing the ticker" look alike but are not
+			// the same state: the second one still has something to keep.
+			var editingState = useState( false );
+			var isEditing = editingState[ 0 ];
+			var setIsEditing = editingState[ 1 ];
 
-			function setTickerId( value ) {
+			function save( value ) {
 				props.setAttributes( { tickerId: value } );
+				setIsEditing( false );
 			}
+
+			var submitLabel = tickerId
+				? __( 'Save', 'livetickr' )
+				: __( 'Add ticker', 'livetickr' );
 
 			var sidebar = el(
 				blockEditor.InspectorControls,
@@ -240,26 +278,18 @@
 				el(
 					components.PanelBody,
 					{ title: __( 'Ticker', 'livetickr' ) },
-					tickerId
-						? el(
-								'p',
-								{ className: 'livetickr-sidebar-current' },
-								el( 'code', null, tickerId )
-						  )
-						: null,
 					el( TickerForm, {
-						onCommit: setTickerId,
-						label: tickerId
-							? __( 'Replace with', 'livetickr' )
-							: __( 'Ticker ID', 'livetickr' ),
-						submit: tickerId
-							? __( 'Replace ticker', 'livetickr' )
-							: __( 'Add ticker', 'livetickr' ),
+						// Remount when the ID changes so the field follows it,
+						// including after a save made on the canvas.
+						key: tickerId,
+						value: tickerId,
+						submit: submitLabel,
+						onSubmit: save,
 					} )
 				)
 			);
 
-			if ( ! tickerId ) {
+			if ( ! tickerId || isEditing ) {
 				return el(
 					Fragment,
 					null,
@@ -272,15 +302,26 @@
 							{
 								icon: brandMark( 24, 'default' ),
 								label: wordmark(),
-								instructions: __(
-									'Which ticker should appear here?',
-									'livetickr'
-								),
+								instructions: tickerId
+									? __(
+											'Which ticker should appear here? The one set now stays until you save.',
+											'livetickr'
+									  )
+									: __(
+											'Which ticker should appear here?',
+											'livetickr'
+									  ),
 							},
 							el( TickerForm, {
-								onCommit: setTickerId,
-								label: __( 'Ticker ID', 'livetickr' ),
-								submit: __( 'Add ticker', 'livetickr' ),
+								key: tickerId,
+								value: tickerId,
+								submit: submitLabel,
+								onSubmit: save,
+								onCancel: tickerId
+									? function () {
+											setIsEditing( false );
+									  }
+									: null,
 							} )
 						)
 					)
@@ -335,7 +376,7 @@
 								variant: 'secondary',
 								size: 'small',
 								onClick: function () {
-									setTickerId( '' );
+									setIsEditing( true );
 								},
 							},
 							__( 'Change', 'livetickr' )

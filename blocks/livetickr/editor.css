@@ -97,14 +97,13 @@
 }
 
 /* Sidebar and placeholder: native editor styling, only spacing to fix. */
-.livetickr-form .components-button {
-	margin-top: 8px;
-}
-
 .livetickr-form .components-notice {
 	margin: 8px 0 0;
 }
 
-.livetickr-sidebar-current {
-	margin: 0 0 16px;
+.livetickr-form__actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 12px;
 }
