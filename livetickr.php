@@ -80,3 +80,59 @@ $livetickr_update_checker = PucFactory::buildUpdateChecker(
 );
 
 $livetickr_update_checker->getVcsApi()->enableReleaseAssets( '/livetickr\.zip/' );
+
+/**
+ * The plugin's own artwork on the update screens.
+ *
+ * WordPress does not go looking in the plugin folder for either of these.
+ * Dashboard -> Updates reads `icons` off the update object in the
+ * update_plugins transient, and the "View version details" modal reads
+ * `banners` off the plugins_api response. So whatever tells WordPress that a
+ * new version exists is also what has to hand over the artwork, and here that
+ * is the update checker. Without this the update row shows the generic grey
+ * plug and the modal has no header at all.
+ *
+ * Both URLs point into the installed plugin rather than at our CDN: no admin
+ * page reaches out to us to draw them, nothing to log, and a site behind a
+ * firewall still gets them.
+ *
+ * One SVG per surface covers every screen density. Core prefers the `svg` key
+ * over `2x` and `1x` for the icon, and paints the banner as a CSS background
+ * with `background-size: cover`, so there is no second file to keep in step.
+ *
+ * The banner is composed for how core renders it, which is worth knowing before
+ * editing it: the plugin name is drawn over the banner in white at 30px, 174px
+ * down, so the lower left has to stay empty, and `cover` with the default
+ * top-left position means any crop happens on the right. Hence the mark at the
+ * top left on a flat ink ground, and no wordmark of our own.
+ */
+$livetickr_update_checker->addFilter(
+	'pre_inject_update',
+	static function ( $update ) {
+		if ( is_object( $update ) ) {
+			$update->icons = array(
+				'svg' => plugins_url( 'assets/icon.svg', LIVETICKR_FILE ),
+			);
+		}
+
+		return $update;
+	}
+);
+
+$livetickr_update_checker->addFilter(
+	'pre_inject_info',
+	static function ( $info ) {
+		// Guarded because this can be false or null: the caller only checks for
+		// that after the filter has run.
+		if ( is_object( $info ) ) {
+			$banner = plugins_url( 'assets/banner.svg', LIVETICKR_FILE );
+
+			$info->banners = array(
+				'low'  => $banner,
+				'high' => $banner,
+			);
+		}
+
+		return $info;
+	}
+);
