@@ -13,9 +13,9 @@
 
 .livetickr-card {
 	/* Brand palette, mirroring resources/css/app.css in the Livetickr app.
-	   The pairing rule matters: the lime is only ever set against ink, never
-	   against white, so the icon glyph is dark on the accent rather than
-	   light. */
+	   The lime is never set against white — only against ink — which is why
+	   it appears here as the mark's top bar and the focus ring, and not as a
+	   surface. */
 	--livetickr-brand: #c2f04b;
 	--livetickr-ink: #0a0a0a;
 	--livetickr-on-ink: #f5f5f2;
@@ -30,16 +30,12 @@
 	color: var(--livetickr-on-ink);
 }
 
-.livetickr-card__icon {
+/* The mark sits straight on the ink — the brand has no accent tile, and the
+   inverse variant is drawn for exactly this ground. */
+.livetickr-card__mark {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 34px;
-	height: 34px;
 	flex-shrink: 0;
-	border-radius: 8px;
-	background: var(--livetickr-brand);
-	color: var(--livetickr-ink);
+	align-items: center;
 }
 
 .livetickr-card__text {
@@ -52,8 +48,8 @@
 }
 
 .livetickr-card__name {
-	font-weight: 600;
-	letter-spacing: -0.01em;
+	font-weight: 700;
+	letter-spacing: -0.02em;
 	color: var(--livetickr-on-ink);
 }
 

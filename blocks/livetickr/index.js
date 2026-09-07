@@ -19,31 +19,68 @@
 	var sprintf = i18n.sprintf;
 
 	/**
-	 * A feed glyph, drawn inline.
+	 * The Livetickr brand mark: three stepped bars, lime on top.
 	 *
-	 * Not components.Icon: inside the editor canvas iframe the Dashicons font
-	 * is not loaded, so an icon slug renders as nothing at all. Deliberately a
-	 * generic three-bar feed mark rather than a redrawn Livetickr logo —
-	 * approximating a wordmark from a raster asset reads worse than not using
-	 * it. Swap in the real SVG when there is one.
+	 * Geometry and palette mirror brand-mark.tsx in the Livetickr app, which
+	 * itself mirrors the website's BrandMark.astro — livetickr/brand-assets is
+	 * the source of truth for the art. Keep this in step with it.
 	 *
-	 * @param {number} size Edge length in pixels.
+	 * Drawn inline rather than through components.Icon because the editor
+	 * canvas runs in an iframe that does not load the Dashicons font, where an
+	 * icon slug renders as nothing at all.
+	 *
+	 * The app also has a `pulse` variant that walks the lime accent down the
+	 * bars. Deliberately not brought over: an editor card is not the place for
+	 * ambient motion.
+	 *
+	 * @param {number} size    Edge length in pixels.
+	 * @param {string} variant 'default' for light grounds, 'inverse' for ink.
 	 * @return {Object} Element.
 	 */
-	function feedGlyph( size ) {
+	function brandMark( size, variant ) {
+		// [ top, lower ] — only the top bar carries the accent.
+		var palette =
+			'inverse' === variant
+				? [ '#c2f04b', '#f5f5f2' ]
+				: [ '#c2f04b', '#0a0a0a' ];
+
 		return el(
 			'svg',
 			{
 				width: size,
 				height: size,
 				viewBox: '0 0 24 24',
-				fill: 'currentColor',
+				fill: 'none',
+				xmlns: 'http://www.w3.org/2000/svg',
+				// The name is always spelled out in text beside the mark, so
+				// announcing it here would only repeat it.
 				'aria-hidden': 'true',
 				focusable: 'false',
 			},
-			el( 'rect', { x: 4, y: 5, width: 16, height: 3.4, rx: 1.7 } ),
-			el( 'rect', { x: 4, y: 10.3, width: 11, height: 3.4, rx: 1.7 } ),
-			el( 'rect', { x: 4, y: 15.6, width: 6, height: 3.4, rx: 1.7 } )
+			el( 'rect', {
+				x: 1,
+				y: 1,
+				width: 22,
+				height: 5,
+				rx: 2.5,
+				fill: palette[ 0 ],
+			} ),
+			el( 'rect', {
+				x: 1,
+				y: 9.5,
+				width: 15,
+				height: 5,
+				rx: 2.5,
+				fill: palette[ 1 ],
+			} ),
+			el( 'rect', {
+				x: 1,
+				y: 18,
+				width: 8,
+				height: 5,
+				rx: 2.5,
+				fill: palette[ 1 ],
+			} )
 		);
 	}
 
@@ -173,7 +210,7 @@
 	}
 
 	blocks.registerBlockType( 'livetickr/ticker', {
-		icon: feedGlyph( 24 ),
+		icon: brandMark( 24, 'default' ),
 
 		edit: function ( props ) {
 			var tickerId = props.attributes.tickerId;
@@ -219,7 +256,7 @@
 						el(
 							components.Placeholder,
 							{
-								icon: feedGlyph( 24 ),
+								icon: brandMark( 24, 'default' ),
 								label: __( 'Livetickr', 'livetickr' ),
 								instructions: __(
 									'Which ticker should appear here?',
@@ -248,8 +285,8 @@
 						{ className: 'livetickr-card' },
 						el(
 							'span',
-							{ className: 'livetickr-card__icon' },
-							feedGlyph( 18 )
+							{ className: 'livetickr-card__mark' },
+							brandMark( 22, 'inverse' )
 						),
 						el(
 							'span',
