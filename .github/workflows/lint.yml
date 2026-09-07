@@ -52,7 +52,19 @@ jobs:
           php-version: '8.3'
           coverage: none
 
+      # `plugin_updater` is excluded, and only that one. It is not a code-quality
+      # rule but a hosting rule: wordpress.org forbids a plugin from updating
+      # itself, because there the directory does the updating. This plugin is not
+      # in the directory, so nothing would ever tell a site that a new version
+      # exists — the updater is the feature, and the check would fail on it by
+      # design, on every commit, until someone learned to ignore this job.
+      #
+      # Everything else stays on, including the warning that vendor/ ships
+      # without composer.json. That one is accepted rather than silenced: the
+      # manifest describes how the directory was built, and what shipped is
+      # recorded precisely in vendor/composer/installed.json either way.
       - name: Run WordPress Plugin Check
         uses: wordpress/plugin-check-action@v1
         with:
           build-dir: ./build/livetickr
+          exclude-checks: plugin_updater
