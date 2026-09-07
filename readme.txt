@@ -70,14 +70,6 @@ The ticker's appearance comes from Livetickr, not from this plugin, so it stays 
 
 English and German. The German translation is the `de_DE` locale, which addresses you informally. Sites set to another German locale, such as `de_DE_formal` or `de_AT`, see the English original: WordPress does not fall back from one German locale to another for plugin translations.
 
-= Can I point the plugin at a different Livetickr host? =
-
-Yes, with a constant in `wp-config.php`:
-
-`define( 'LIVETICKR_CDN_URL', 'https://cdn.example.com' );`
-
-That is the host serving the loader script, which is also the host it fetches the ticker from. A `livetickr_cdn_url` filter is available too, for deciding it per request.
-
 == Changelog ==
 
 = 0.1.0 =
