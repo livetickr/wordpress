@@ -54,19 +54,31 @@ echo do_shortcode( '[livetickr id="Ab3xY9kLmN01"]' );
 
 ## Filters
 
-### `livetickr_base_url`
+### `livetickr_cdn_url`
 
 The origin serving `embed.js`. Defaults to `https://cdn.livetickr.io`.
 
-The loader and the feed share one origin — `embed.js` derives the feed URL from its own
-script `src` — so this single value moves the whole reader surface, which is what you want
-when pointing an install at staging or at a self-hosted app.
+Whichever host serves the loader also receives the feed requests it makes — `embed.js` derives
+the feed URL from its own script `src` — so this one value moves the whole reader surface.
+That makes it the knob for pointing an install at staging, at the application directly, or at
+a customer's own CNAME.
 
 ```php
-add_filter( 'livetickr_base_url', function () {
+add_filter( 'livetickr_cdn_url', function () {
     return 'https://cdn.example.com';
 } );
 ```
+
+### `livetickr_app_url`
+
+The origin of the Livetickr application, where the API lives. Defaults to
+`https://api.livetickr.io`.
+
+Nothing calls it yet — the plugin makes no request of its own, it prints a tag and the browser
+does the rest. It is separate from the CDN on purpose: when something server-side does need
+the API, reaching for "the base URL" would send it to a CDN edge that has no API on it, and a
+request landing in a cache instead of the application is the kind of wrong that looks like it
+works.
 
 ### `livetickr_script_attributes`
 

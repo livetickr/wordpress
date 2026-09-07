@@ -23,16 +23,22 @@ define( 'LIVETICKR_FILE', __FILE__ );
 define( 'LIVETICKR_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
- * The origin that serves embed.js.
+ * The origin serving embed.js.
  *
- * Whichever host serves the loader also serves the feed it fetches: embed.js
- * derives everything else from its own script src. So this one value decides
- * where a reader's browser goes, and it is the only thing that needs changing
- * to point an install at staging or at a self-hosted app. Override it with the
- * `livetickr_base_url` filter rather than editing this file.
+ * Deliberately not called a "base URL": see includes/urls.php for why the CDN
+ * and the application are two values and not one.
  */
-define( 'LIVETICKR_DEFAULT_BASE_URL', 'https://cdn.livetickr.io' );
+define( 'LIVETICKR_DEFAULT_CDN_URL', 'https://cdn.livetickr.io' );
 
+/**
+ * The origin of the Livetickr application, where the API lives.
+ *
+ * Nothing calls it yet. Defined now so that whatever eventually does cannot
+ * reach for the CDN host by accident.
+ */
+define( 'LIVETICKR_DEFAULT_APP_URL', 'https://api.livetickr.io' );
+
+require_once LIVETICKR_PATH . 'includes/urls.php';
 require_once LIVETICKR_PATH . 'includes/ticker-id.php';
 require_once LIVETICKR_PATH . 'includes/compat.php';
 require_once LIVETICKR_PATH . 'includes/render.php';

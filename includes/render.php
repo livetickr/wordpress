@@ -8,26 +8,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The origin that serves embed.js and the feed it fetches.
- *
- * @return string Base URL without a trailing slash.
- */
-function livetickr_base_url() {
-	/**
-	 * Filters the origin the loader is served from.
-	 *
-	 * The loader and the feed are one origin — embed.js derives the feed URL
-	 * from its own script src — so this single value moves the whole reader
-	 * surface. Point it at a staging CDN or a self-hosted app as needed.
-	 *
-	 * @param string $base_url Base URL without a trailing slash.
-	 */
-	$base_url = apply_filters( 'livetickr_base_url', LIVETICKR_DEFAULT_BASE_URL );
-
-	return untrailingslashit( trim( (string) $base_url ) );
-}
-
-/**
  * Renders a ticker: a wrapper with the loader tag inside it.
  *
  * The loader is printed inline instead of enqueued, which is unusual enough to
@@ -71,7 +51,7 @@ function livetickr_script_tag( $ticker_id ) {
 
 	$attributes = array(
 		'defer' => true,
-		'src'   => livetickr_base_url() . '/embed.js',
+		'src'   => livetickr_cdn_url() . '/embed.js',
 	);
 
 	// The canonical snippet carries `id="livetickr-feed"`. Nothing reads it
