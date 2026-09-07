@@ -1,0 +1,14 @@
+{
+    "name": "livetickr/wordpress",
+    "description": "Livetickr plugin for WordPress: embed a live ticker with a block or a shortcode.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=7.4",
+        "yahnis-elsts/plugin-update-checker": "^5.7"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
