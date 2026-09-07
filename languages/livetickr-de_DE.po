@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Livetickr 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/livetickr/wordpress/issues\n"
 "POT-Creation-Date: 2026-09-07 08:57+0000\n"
-"PO-Revision-Date: 2026-09-07 08:57+0000\n"
+"PO-Revision-Date: 2026-09-07 09:15+0000\n"
 "Last-Translator: Livetickr\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. Plugin URI of the plugin
 #. Author URI of the plugin
 #: livetickr.php
-msgid "https://livetickr.com"
+msgid "https://livetickr.io"
 msgstr ""
 
 #. Description of the plugin

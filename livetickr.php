@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name:       Livetickr
- * Plugin URI:        https://livetickr.com
+ * Plugin URI:        https://livetickr.io
  * Description:       Embed a Livetickr live ticker with a block or a shortcode. Paste the ticker ID, the feed does the rest.
  * Version:           0.1.0
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Livetickr
- * Author URI:        https://livetickr.com
- * License:           GPL-2.0-or-later
+ * Author URI:        https://livetickr.io
+ * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       livetickr
  * Domain Path:       /languages

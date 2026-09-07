@@ -27,7 +27,7 @@ Add the **Livetickr** block, paste the ticker ID, done. The ticker updates itsel
 
 = What it needs =
 
-An account at [livetickr.com](https://livetickr.com/) with at least one published ticker, and the domain of this site registered in your Livetickr workspace. Tickers are only served on registered domains. Until yours is registered, the ticker will stay empty on the page.
+An account at [livetickr.io](https://livetickr.io/) with at least one published ticker, and the domain of this site registered in your Livetickr workspace. Tickers are only served on registered domains. Until yours is registered, the ticker will stay empty on the page.
 
 = External services =
 
@@ -35,7 +35,7 @@ This plugin loads a script from the Livetickr content delivery network (`https:/
 
 The requests transmit the visitor's IP address, browser user agent and the address of the page the ticker is on, which is how Livetickr authorises the embed and counts readers. No data is sent for pages without a ticker.
 
-Service provided by Livetickr: [terms](https://livetickr.com/terms) · [privacy policy](https://livetickr.com/privacy).
+Service provided by Livetickr: [privacy policy](https://livetickr.io/privacy-policy/) · [legal disclosure](https://livetickr.io/legal-disclosure/).
 
 == Installation ==
 

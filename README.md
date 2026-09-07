@@ -1,6 +1,6 @@
 # Livetickr for WordPress
 
-Embed a [Livetickr](https://livetickr.com/) live ticker in a post or page with a block or a
+Embed a [Livetickr](https://livetickr.io/) live ticker in a post or page with a block or a
 shortcode. Paste the ticker ID, the feed does the rest.
 
 ## What it does
@@ -152,6 +152,14 @@ wp i18n make-pot . languages/livetickr.pot --slug=livetickr --domain=livetickr
 
 `.distignore` lists what is development-only. CI checks the built plugin rather than the
 repository, because the repository legitimately holds files a distributed plugin must not.
+
+The plugin deliberately carries no `Update URI:` header. It is the mechanism
+WordPress provides so a same-named plugin in the wordpress.org directory cannot
+serve updates over a self-hosted one, and it is the right header for a plugin
+distributed from GitHub. Plugin Check rejects it as `plugin_updater_detected`,
+because that rule is written for plugins hosted *on* wordpress.org. Keeping the
+check green won for now, since the plugin has no updater yet. Revisit both when
+one is added: the header and a wordpress.org-clean report cannot both be had.
 
 Run [WordPress Plugin Check](https://github.com/WordPress/plugin-check) the same way CI does:
 
