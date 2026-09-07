@@ -3,6 +3,14 @@ name: Release
 on:
   push:
     tags: [ 'v*' ]
+  # Rebuilding a release without moving a tag: name the tag, or leave it empty
+  # for the newest one. Needed when a run failed after the release already
+  # existed, since pushing the tag again is not an option.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to build (default: the newest v* tag)'
+        required: false
 
 permissions:
   contents: write
@@ -12,36 +20,104 @@ jobs:
     name: Build and attach the plugin ZIP
     runs-on: ubuntu-latest
     steps:
+      # Full history: resolving "the newest tag" on a manual run needs the tags,
+      # and a shallow clone carries none.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Inputs reach the shell through the environment rather than through
+      # `${{ }}` interpolation, which would paste them into the script itself.
+      - name: Decide which tag to build
+        id: tag
+        env:
+          EVENT: ${{ github.event_name }}
+          PUSHED_TAG: ${{ github.ref_name }}
+          REQUESTED_TAG: ${{ inputs.tag }}
+        run: |
+          if [ "$EVENT" = "push" ]; then
+            tag="$PUSHED_TAG"
+          elif [ -n "$REQUESTED_TAG" ]; then
+            tag="$REQUESTED_TAG"
+          else
+            tag="$(git tag --list 'v*' --sort=-v:refname | head -n 1)"
+          fi
+
+          if [ -z "$tag" ]; then
+            echo "::error::No v* tag to build."
+            exit 1
+          fi
+
+          if ! git rev-parse -q --verify "refs/tags/$tag" > /dev/null; then
+            echo "::error::Tag $tag does not exist."
+            exit 1
+          fi
+
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Building $tag"
+
+      # So a manual run builds the tag it was asked for and not whatever main
+      # happens to be at.
+      - name: Check out that tag
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: git checkout --detach "$TAG"
 
       # A tag that disagrees with the plugin header would ship a plugin that
       # reports the wrong version, and every updater reads the header.
       - name: Check the tag matches the plugin header
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
         run: |
-          tag="${GITHUB_REF_NAME#v}"
+          version="${TAG#v}"
           header="$(sed -n 's/^ \* Version:[[:space:]]*//p' livetickr.php | head -1 | tr -d '[:space:]')"
-          echo "tag=$tag header=$header"
-          if [ "$tag" != "$header" ]; then
-            echo "::error::Tag $tag does not match the Version header ($header)."
+          echo "tag=$version header=$header"
+          if [ "$version" != "$header" ]; then
+            echo "::error::Tag $version does not match the Version header ($header)."
             exit 1
           fi
           stable="$(sed -n 's/^Stable tag:[[:space:]]*//p' readme.txt | head -1 | tr -d '[:space:]')"
-          if [ "$tag" != "$stable" ]; then
-            echo "::error::Tag $tag does not match readme.txt Stable tag ($stable)."
+          if [ "$version" != "$stable" ]; then
+            echo "::error::Tag $version does not match readme.txt Stable tag ($stable)."
             exit 1
           fi
 
-      # The ZIP has to unpack to a directory named after the plugin slug, which
-      # is also the text domain, so translations keep resolving.
+      # git archive rather than a copy-and-exclude: it applies the export-ignore
+      # rules in .gitattributes, which is the same list GitHub applies to the
+      # "Source code" ZIP of a release. One list, so the ZIP a customer downloads
+      # and the archive the updater falls back to cannot drift apart.
+      #
+      # --prefix so the ZIP unpacks into a directory named after the plugin slug,
+      # which is also the text domain, so translations keep resolving.
       - name: Build the ZIP
         run: |
-          mkdir -p build/livetickr
-          tar --exclude-from=.distignore -cf - . | tar -C build/livetickr -xf -
-          ( cd build && zip -rq ../livetickr.zip livetickr )
+          git archive \
+            --format=zip \
+            --prefix=livetickr/ \
+            --output=livetickr.zip \
+            HEAD
           unzip -l livetickr.zip
 
+      # The plugin will not run without the update checker in vendor/, and the
+      # only way that goes missing is quietly: someone re-adds vendor/ to
+      # .gitignore, or export-ignores it. Cheaper to catch here than in a
+      # customer's plugins list.
+      - name: Check the update checker is in the ZIP
+        run: |
+          if ! unzip -l livetickr.zip | grep -q 'livetickr/vendor/autoload.php'; then
+            echo "::error::vendor/autoload.php is missing from the ZIP. The plugin cannot load."
+            exit 1
+          fi
+          if ! unzip -l livetickr.zip | grep -q 'plugin-update-checker'; then
+            echo "::error::The update checker is missing from the ZIP. Updates would never be offered."
+            exit 1
+          fi
+
+      # overwrite_files so a rebuild replaces the asset instead of failing on it.
       - name: Attach it to the release
         uses: softprops/action-gh-release@v2
         with:
           files: livetickr.zip
+          tag_name: ${{ steps.tag.outputs.tag }}
           generate_release_notes: true
+          overwrite_files: true

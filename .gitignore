@@ -3,5 +3,9 @@
 
 # Local tooling
 node_modules/
-vendor/
 .DS_Store
+
+# vendor/ is intentionally NOT ignored. The plugin loads the update checker from
+# it at runtime, and a WordPress plugin is installed by unzipping, not by
+# running composer. So what is in vendor/ is part of the product and is
+# committed: `composer update` is a change to be reviewed like any other.
