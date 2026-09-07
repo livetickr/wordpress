@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "livetickr/ticker",
+	"version": "0.1.0",
+	"title": "Livetickr",
+	"category": "embed",
+	"icon": "rss",
+	"description": "Embed a Livetickr live ticker. Paste the ticker ID or the snippet from its Embed dialog.",
+	"keywords": [
+		"livetickr",
+		"ticker",
+		"liveticker",
+		"liveblog",
+		"live"
+	],
+	"textdomain": "livetickr",
+	"attributes": {
+		"tickerId": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "livetickr-ticker-editor",
+	"editorStyle": "livetickr-ticker-editor-style"
+}

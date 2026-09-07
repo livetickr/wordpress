@@ -1,0 +1,58 @@
+/**
+ * Editor-only styling for the Livetickr block.
+ *
+ * Nothing here ships to the front end: on a published page the feed brings its
+ * own styles, and the plugin adds none of its own.
+ */
+
+.livetickr-form .components-button {
+	margin-top: 8px;
+}
+
+.livetickr-form .components-notice {
+	margin: 8px 0 0;
+}
+
+.livetickr-sidebar-current {
+	margin: 0 0 16px;
+}
+
+.livetickr-card {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	background: #f6f7f7;
+}
+
+.livetickr-card__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+	border-radius: 4px;
+	background: #1e1e1e;
+	color: #fff;
+}
+
+.livetickr-card__text {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	min-width: 0;
+	line-height: 1.4;
+}
+
+.livetickr-card__id {
+	font-family: Menlo, Consolas, monaco, monospace;
+	font-size: 12px;
+}
+
+.livetickr-card__hint {
+	color: #757575;
+	font-size: 12px;
+}

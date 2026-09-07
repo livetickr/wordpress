@@ -1,0 +1,50 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  php-syntax:
+    name: PHP ${{ matrix.php }} syntax
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The oldest version the plugin header allows, plus current.
+        php: [ '7.4', '8.4' ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Lint
+        run: find . -name '*.php' -print0 | xargs -0 -n1 -P4 php -l
+
+  plugin-check:
+    name: Plugin Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Checked against what actually ships, not the repository: the repo
+      # legitimately holds files (.github, .gitignore) that a distributed
+      # plugin must not.
+      - name: Build the distributable
+        run: |
+          mkdir -p build/livetickr
+          rsync -a --exclude-from=.distignore ./ build/livetickr/
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Run WordPress Plugin Check
+        uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: ./build/livetickr
