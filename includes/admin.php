@@ -24,9 +24,17 @@ function livetickr_plugin_row_meta( $links, $file ) {
 		return $links;
 	}
 
+	// The documentation index, not /docs/embed/wordpress/, which this pointed at
+	// and which answers 404: that page is still a draft on the site and drafts
+	// are dropped from the production build. A dead link is worse than a general
+	// one, and the index routes onward. Point it back at the deep link once the
+	// WordPress page is written.
+	//
 	// Tagged like the readmes, with the surface in utm_medium and this exact
-	// placement in utm_content.
-	$url = 'https://livetickr.io/docs/embed/wordpress/'
+	// placement in utm_content. The label stays `docs_wordpress`: it names the
+	// link that was clicked, which is still the docs link in the plugin row, so
+	// the numbers stay comparable across this change.
+	$url = 'https://livetickr.io/docs/'
 		. '?utm_source=wp_plugin&utm_medium=plugins_list'
 		. '&utm_campaign=livetickr_wp&utm_content=docs_wordpress';
 
