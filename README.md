@@ -111,23 +111,15 @@ Page caches are fine: the loader tag is static and the feed is fetched by the br
 
 ## Translations
 
-Source strings are English. German ships with the plugin, in every locale a
-German-speaking site is actually set to, because WordPress does not fall back
-from a dialect to `de_DE` for plugin translations: a `de_AT` site with only
-`de_DE` installed gets English.
+Source strings are English. German ships with the plugin as `de_DE`, which is
+WordPress's informal locale, so the copy addresses the reader as "du".
 
-| Locale | Address |
-| --- | --- |
-| `de_DE` | du |
-| `de_DE_formal` | Sie |
-| `de_AT` | du |
-| `de_CH` | Sie |
-| `de_CH_informal` | du |
-
-Which pronoun belongs to which locale is WordPress's convention, not ours, and
-it is not consistent between `de_DE` and `de_CH`. Swiss German drops the
-eszett; no current string contains one, so those files are byte-identical to
-their source. Watch for it when adding strings.
+Only `de_DE`. WordPress does not fall back from a dialect to `de_DE` for plugin
+translations, so a site set to `de_DE_formal`, `de_AT`, `de_CH` or
+`de_CH_informal` sees the English source. Adding one is a copy of the `.po`
+with its `Language:` header changed, plus a rebuild. Note that Swiss German
+drops the eszett, and that WordPress's pronoun convention is not consistent
+between `de_DE` and `de_CH`.
 
 Each locale needs three files: the `.po` to edit, the `.mo` that PHP reads, and
 a `.json` for the block editor's JavaScript. The JSON filename carries an MD5
@@ -137,7 +129,7 @@ changing strings:
 
 ```bash
 wp i18n make-pot . languages/livetickr.pot --slug=livetickr --domain=livetickr
-# edit languages/livetickr-*.po
+# edit languages/livetickr-de_DE.po
 wp i18n make-mo languages/
 wp i18n make-json languages/ --no-purge --pretty-print
 ```

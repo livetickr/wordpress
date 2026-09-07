@@ -23,7 +23,7 @@ Add the **Livetickr** block, paste the ticker ID, done. The ticker updates itsel
 * Accepts the whole snippet from the ticker's Embed dialog, not just the bare ID, so you can paste straight from the clipboard.
 * Converts an existing Custom HTML block containing a ticker into a Livetickr block.
 * Asks the common caching and optimisation plugins to leave the ticker's script alone, because moving it breaks where the ticker renders.
-* English and German, the latter in all five locales a German-speaking site may be set to.
+* English and German.
 
 = What it needs =
 
@@ -70,7 +70,7 @@ The ticker's appearance comes from Livetickr, not from this plugin, so it stays 
 
 = Which languages are included? =
 
-English and German. German covers `de_DE`, `de_DE_formal`, `de_AT`, `de_CH` and `de_CH_informal`, each with the form of address WordPress uses for that locale, because WordPress does not fall back from a dialect to `de_DE` for plugin translations.
+English and German. The German translation is the `de_DE` locale, which addresses you informally. Sites set to another German locale, such as `de_DE_formal` or `de_AT`, see the English original: WordPress does not fall back from one German locale to another for plugin translations.
 
 = Can I point the plugin at a different Livetickr host? =
 
