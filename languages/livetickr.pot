@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-07T08:31:23+00:00\n"
+"POT-Creation-Date: 2026-09-07T08:40:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: livetickr\n"
@@ -17,8 +17,6 @@ msgstr ""
 #. Plugin Name of the plugin
 #. Author of the plugin
 #: livetickr.php
-#: blocks/livetickr/index.js:223
-#: blocks/livetickr/index.js:260
 msgid "Livetickr"
 msgstr ""
 
@@ -49,59 +47,59 @@ msgstr ""
 msgid "That does not look like a ticker ID. Expected 12 letters and digits, or the snippet from the ticker's Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:93
+#: blocks/livetickr/index.js:150
 msgid "That is the internal ID from the dashboard URL, which cannot be embedded. The ticker ID is in the ticker’s Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:99
+#: blocks/livetickr/index.js:156
 msgid "That does not look like a ticker ID. Expected 12 letters and digits, or the snippet from the ticker’s Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:141
+#: blocks/livetickr/index.js:198
 msgid "e.g. Ab3xY9kLmN01"
 msgstr ""
 
-#: blocks/livetickr/index.js:142
+#: blocks/livetickr/index.js:199
 msgid "Paste the ticker ID, or the whole snippet from the ticker’s Embed dialog."
 msgstr ""
 
-#: blocks/livetickr/index.js:191
+#: blocks/livetickr/index.js:248
 msgid "Ticker"
 msgstr ""
 
-#: blocks/livetickr/index.js:202
+#: blocks/livetickr/index.js:259
 msgid "Replace with"
 msgstr ""
 
-#: blocks/livetickr/index.js:203
-#: blocks/livetickr/index.js:231
+#: blocks/livetickr/index.js:260
+#: blocks/livetickr/index.js:288
 msgid "Ticker ID"
 msgstr ""
 
-#: blocks/livetickr/index.js:205
+#: blocks/livetickr/index.js:262
 msgid "Replace ticker"
 msgstr ""
 
-#: blocks/livetickr/index.js:206
-#: blocks/livetickr/index.js:232
+#: blocks/livetickr/index.js:263
+#: blocks/livetickr/index.js:289
 msgid "Add ticker"
 msgstr ""
 
-#: blocks/livetickr/index.js:224
+#: blocks/livetickr/index.js:281
 msgid "Which ticker should appear here?"
 msgstr ""
 
 #. translators: %s: the ticker's ID.
-#: blocks/livetickr/index.js:267
+#: blocks/livetickr/index.js:324
 #, js-format
 msgid "Ticker %s"
 msgstr ""
 
-#: blocks/livetickr/index.js:274
+#: blocks/livetickr/index.js:331
 msgid "The live ticker appears here on the published page."
 msgstr ""
 
-#: blocks/livetickr/index.js:290
+#: blocks/livetickr/index.js:347
 msgid "Change"
 msgstr ""
 

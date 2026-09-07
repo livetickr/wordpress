@@ -48,9 +48,24 @@
 }
 
 .livetickr-card__name {
-	font-weight: 700;
-	letter-spacing: -0.02em;
 	color: var(--livetickr-on-ink);
+}
+
+.livetickr-card__name .livetickr-wordmark__tld {
+	color: var(--livetickr-on-ink-muted);
+}
+
+/* Weight and tracking from brand-lockup.tsx in the app. Its Archivo is not
+   loaded here — a webfont in the admin for one card is a poor trade — so the
+   editor's own face carries it at the brand's weight instead. */
+.livetickr-wordmark {
+	font-weight: 800;
+	letter-spacing: -0.04em;
+	line-height: 1;
+}
+
+.livetickr-wordmark__tld {
+	color: #9a968a;
 }
 
 .livetickr-card__id {

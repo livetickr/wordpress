@@ -85,6 +85,26 @@
 	}
 
 	/**
+	 * The wordmark, with the domain suffix set back the way the marketing art
+	 * does it: name in the ground's contrast colour, `.io` muted.
+	 *
+	 * Not translatable — it is a name, not a string. Weight and tracking
+	 * follow brand-lockup.tsx in the app (extrabold, -0.04em); its Archivo is
+	 * not pulled in, since loading a webfont into the admin for one card is a
+	 * poor trade.
+	 *
+	 * @return {Object} Element.
+	 */
+	function wordmark() {
+		return el(
+			'span',
+			{ className: 'livetickr-wordmark' },
+			'Livetickr',
+			el( 'span', { className: 'livetickr-wordmark__tld' }, '.io' )
+		);
+	}
+
+	/**
 	 * Reads a ticker ID out of user input.
 	 *
 	 * Mirrors livetickr_ticker_id_from_input() in includes/ticker-id.php —
@@ -257,7 +277,7 @@
 							components.Placeholder,
 							{
 								icon: brandMark( 24, 'default' ),
-								label: __( 'Livetickr', 'livetickr' ),
+								label: wordmark(),
 								instructions: __(
 									'Which ticker should appear here?',
 									'livetickr'
@@ -294,7 +314,7 @@
 							el(
 								'span',
 								{ className: 'livetickr-card__name' },
-								__( 'Livetickr', 'livetickr' )
+								wordmark()
 							),
 							el(
 								'span',
