@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Livetickr 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/livetickr/wordpress/issues\n"
 "POT-Creation-Date: 2026-09-07 08:57+0000\n"
-"PO-Revision-Date: 2026-09-07 09:15+0000\n"
+"PO-Revision-Date: 2026-09-07 09:36+0000\n"
 "Last-Translator: Livetickr\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -20,15 +20,23 @@ msgid "Livetickr"
 msgstr ""
 
 #. Plugin URI of the plugin
-#. Author URI of the plugin
 #: livetickr.php
-msgid "https://livetickr.io"
+msgid "https://livetickr.io/?utm_source=wp_plugin&utm_medium=plugins_list&utm_campaign=livetickr_wp&utm_content=plugin_uri"
 msgstr ""
 
 #. Description of the plugin
 #: livetickr.php
 msgid "Embed a Livetickr live ticker with a block or a shortcode. Paste the ticker ID, the feed does the rest."
 msgstr "Livetickr-Liveticker als Block oder Shortcode einbetten. Ticker-ID einfügen, den Rest macht der Feed."
+
+#. Author URI of the plugin
+#: livetickr.php
+msgid "https://livetickr.io/?utm_source=wp_plugin&utm_medium=plugins_list&utm_campaign=livetickr_wp&utm_content=author_uri"
+msgstr ""
+
+#: includes/admin.php:36
+msgid "Documentation"
+msgstr "Dokumentation"
 
 #: includes/render.php:157
 msgid "Livetickr:"

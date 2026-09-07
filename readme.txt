@@ -25,6 +25,8 @@ Add the **Livetickr** block, paste the ticker ID, done. The ticker updates itsel
 * Asks the common caching and optimisation plugins to leave the ticker's script alone, because moving it breaks where the ticker renders.
 * English and German.
 
+Full documentation: [Embedding in WordPress](https://livetickr.io/docs/embed/wordpress/?utm_source=wp_plugin&utm_medium=readme.txt&utm_campaign=livetickr_wp&utm_content=docs_wordpress).
+
 = What it needs =
 
 An account at [livetickr.io](https://livetickr.io/?utm_source=wp_plugin&utm_medium=readme.txt&utm_campaign=livetickr_wp&utm_content=requirements) with at least one published ticker, and the domain of this site registered in your Livetickr workspace. Tickers are only served on registered domains. Until yours is registered, the ticker will stay empty on the page.

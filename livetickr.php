@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name:       Livetickr
- * Plugin URI:        https://livetickr.io
+ * Plugin URI:        https://livetickr.io/?utm_source=wp_plugin&utm_medium=plugins_list&utm_campaign=livetickr_wp&utm_content=plugin_uri
  * Description:       Embed a Livetickr live ticker with a block or a shortcode. Paste the ticker ID, the feed does the rest.
  * Version:           0.1.0
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Livetickr
- * Author URI:        https://livetickr.io
+ * Author URI:        https://livetickr.io/?utm_source=wp_plugin&utm_medium=plugins_list&utm_campaign=livetickr_wp&utm_content=author_uri
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       livetickr
@@ -44,3 +44,4 @@ require_once LIVETICKR_PATH . 'includes/compat.php';
 require_once LIVETICKR_PATH . 'includes/render.php';
 require_once LIVETICKR_PATH . 'includes/shortcode.php';
 require_once LIVETICKR_PATH . 'includes/block.php';
+require_once LIVETICKR_PATH . 'includes/admin.php';

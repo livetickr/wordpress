@@ -3,6 +3,8 @@
 Embed a [Livetickr](https://livetickr.io/?utm_source=wp_plugin&utm_medium=readme.md&utm_campaign=livetickr_wp&utm_content=intro) live ticker in a post or page with a block or a
 shortcode. Paste the ticker ID, the feed does the rest.
 
+Documentation: [Embedding in WordPress](https://livetickr.io/docs/embed/wordpress/?utm_source=wp_plugin&utm_medium=readme.md&utm_campaign=livetickr_wp&utm_content=docs_wordpress).
+
 ## What it does
 
 Livetickr serves a ticker as a small loader script that fetches the feed and keeps it
@@ -54,10 +56,11 @@ echo do_shortcode( '[livetickr id="Ab3xY9kLmN01"]' );
 
 ## Caching and optimisation plugins
 
-`embed.js` locates itself with `document.currentScript` and inserts the feed as its own next
-sibling. The tag's position in the document is therefore functional, not cosmetic: a plugin
-that moves it to the footer, bundles it or inlines it does not slow the ticker down, it stops
-it rendering in the right place.
+[`embed.js`](https://livetickr.io/docs/embed/javascript/?utm_source=wp_plugin&utm_medium=readme.md&utm_campaign=livetickr_wp&utm_content=docs_embed) locates itself with
+`document.currentScript` and inserts the feed as its own next sibling. The tag's position
+in the document is therefore functional, not cosmetic: a plugin that moves it to the footer,
+bundles it or inlines it does not slow the ticker down, it stops it rendering in the right
+place.
 
 The plugin marks the tag for Cloudflare Rocket Loader, WP Rocket, Autoptimize, LiteSpeed
 Cache, SG Optimizer and Perfmatters, and registers each one's exclusion filter. If another
