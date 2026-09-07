@@ -1,6 +1,6 @@
 # Livetickr for WordPress
 
-Embed a [Livetickr](https://livetickr.io/) live ticker in a post or page with a block or a
+Embed a [Livetickr](https://livetickr.io/?utm_source=wp_plugin&utm_medium=readme.md&utm_campaign=livetickr_wp&utm_content=intro) live ticker in a post or page with a block or a
 shortcode. Paste the ticker ID, the feed does the rest.
 
 ## What it does
