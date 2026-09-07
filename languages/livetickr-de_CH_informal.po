@@ -1,17 +1,16 @@
-# Copyright (C) 2026 Livetickr
-# This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Livetickr 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/livetickr\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Report-Msgid-Bugs-To: https://github.com/livetickr/wordpress/issues\n"
+"POT-Creation-Date: 2026-09-07 08:57+0000\n"
+"PO-Revision-Date: 2026-09-07 08:57+0000\n"
+"Last-Translator: Livetickr\n"
+"Language-Team: Deutsch\n"
+"Language: de_CH_informal\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-07T08:56:46+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: livetickr\n"
 
 #. Plugin Name of the plugin
@@ -29,75 +28,75 @@ msgstr ""
 #. Description of the plugin
 #: livetickr.php
 msgid "Embed a Livetickr live ticker with a block or a shortcode. Paste the ticker ID, the feed does the rest."
-msgstr ""
+msgstr "Livetickr-Liveticker als Block oder Shortcode einbetten. Ticker-ID einfügen, den Rest macht der Feed."
 
 #: includes/render.php:157
 msgid "Livetickr:"
-msgstr ""
+msgstr "Livetickr:"
 
 #: includes/ticker-id.php:28
 msgid "No ticker ID set yet."
-msgstr ""
+msgstr "Noch keine Ticker-ID gesetzt."
 
 #: includes/ticker-id.php:53
 #: blocks/livetickr/index.js:144
 msgid "That is the internal ID from the dashboard URL, which cannot be embedded. The ticker ID is in the ticker’s Embed dialog."
-msgstr ""
+msgstr "Das ist die interne ID aus der Dashboard-URL, die sich nicht einbetten lässt. Die Ticker-ID steht im Embed-Dialog des Tickers."
 
 #: includes/ticker-id.php:59
 #: blocks/livetickr/index.js:150
 msgid "That does not look like a ticker ID. Expected 12 letters and digits, or the snippet from the ticker’s Embed dialog."
-msgstr ""
+msgstr "Das sieht nicht nach einer Ticker-ID aus. Erwartet werden 12 Buchstaben und Ziffern oder das Snippet aus dem Embed-Dialog des Tickers."
 
 #: blocks/livetickr/index.js:197
 msgid "Ticker ID"
-msgstr ""
+msgstr "Ticker-ID"
 
 #: blocks/livetickr/index.js:199
 msgid "e.g. Ab3xY9kLmN01"
-msgstr ""
+msgstr "z. B. Ab3xY9kLmN01"
 
 #: blocks/livetickr/index.js:200
 msgid "Paste the ticker ID, or the whole snippet from the ticker’s Embed dialog."
-msgstr ""
+msgstr "Füge die Ticker-ID ein oder das komplette Snippet aus dem Embed-Dialog des Tickers."
 
 #: blocks/livetickr/index.js:247
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: blocks/livetickr/index.js:272
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: blocks/livetickr/index.js:273
 msgid "Add ticker"
-msgstr ""
+msgstr "Ticker hinzufügen"
 
 #: blocks/livetickr/index.js:280
 msgid "Ticker"
-msgstr ""
+msgstr "Ticker"
 
 #: blocks/livetickr/index.js:306
 msgid "Which ticker should appear here? The one set now stays until you save."
-msgstr ""
+msgstr "Welcher Ticker soll hier erscheinen? Der aktuelle bleibt, bis du speicherst."
 
 #: blocks/livetickr/index.js:310
 msgid "Which ticker should appear here?"
-msgstr ""
+msgstr "Welcher Ticker soll hier erscheinen?"
 
 #. translators: %s: the ticker's ID.
 #: blocks/livetickr/index.js:359
 #, js-format
 msgid "Ticker %s"
-msgstr ""
+msgstr "Ticker %s"
 
 #: blocks/livetickr/index.js:366
 msgid "The live ticker appears here on the published page."
-msgstr ""
+msgstr "Der Liveticker erscheint hier auf der veröffentlichten Seite."
 
 #: blocks/livetickr/index.js:382
 msgid "Change"
-msgstr ""
+msgstr "Ändern"
 
 #: blocks/livetickr/block.json
 msgctxt "block title"
@@ -107,29 +106,29 @@ msgstr ""
 #: blocks/livetickr/block.json
 msgctxt "block description"
 msgid "Embed a Livetickr live ticker. Paste the ticker ID or the snippet from its Embed dialog."
-msgstr ""
+msgstr "Livetickr-Liveticker einbetten. Ticker-ID oder das Snippet aus dem Embed-Dialog einfügen."
 
 #: blocks/livetickr/block.json
 msgctxt "block keyword"
 msgid "livetickr"
-msgstr ""
+msgstr "livetickr"
 
 #: blocks/livetickr/block.json
 msgctxt "block keyword"
 msgid "ticker"
-msgstr ""
+msgstr "ticker"
 
 #: blocks/livetickr/block.json
 msgctxt "block keyword"
 msgid "liveticker"
-msgstr ""
+msgstr "liveticker"
 
 #: blocks/livetickr/block.json
 msgctxt "block keyword"
 msgid "liveblog"
-msgstr ""
+msgstr "liveblog"
 
 #: blocks/livetickr/block.json
 msgctxt "block keyword"
 msgid "live"
-msgstr ""
+msgstr "live"

@@ -14,7 +14,7 @@ Embed a Livetickr live ticker in a post or page with a block or a shortcode. Pas
 
 Livetickr is a hosted live ticker service for newsrooms, sports portals and event organisers. This plugin puts one of your tickers into a post or page without touching HTML.
 
-Add the **Livetickr** block, paste the ticker ID, done. The ticker updates itself on the published page — no reloads, nothing to schedule.
+Add the **Livetickr** block, paste the ticker ID, done. The ticker updates itself on the published page. No reloads, nothing to schedule.
 
 = What it does =
 
@@ -23,10 +23,11 @@ Add the **Livetickr** block, paste the ticker ID, done. The ticker updates itsel
 * Accepts the whole snippet from the ticker's Embed dialog, not just the bare ID, so you can paste straight from the clipboard.
 * Converts an existing Custom HTML block containing a ticker into a Livetickr block.
 * Asks the common caching and optimisation plugins to leave the ticker's script alone, because moving it breaks where the ticker renders.
+* English and German, the latter in all five locales a German-speaking site may be set to.
 
 = What it needs =
 
-An account at [livetickr.com](https://livetickr.com/) with at least one published ticker, and the domain of this site registered in your Livetickr workspace. Tickers are only served on registered domains — until yours is registered, the ticker will stay empty on the page.
+An account at [livetickr.com](https://livetickr.com/) with at least one published ticker, and the domain of this site registered in your Livetickr workspace. Tickers are only served on registered domains. Until yours is registered, the ticker will stay empty on the page.
 
 = External services =
 
@@ -34,7 +35,7 @@ This plugin loads a script from the Livetickr content delivery network (`https:/
 
 The requests transmit the visitor's IP address, browser user agent and the address of the page the ticker is on, which is how Livetickr authorises the embed and counts readers. No data is sent for pages without a ticker.
 
-Service provided by Livetickr: [terms](https://livetickr.com/terms) — [privacy policy](https://livetickr.com/privacy).
+Service provided by Livetickr: [terms](https://livetickr.com/terms) · [privacy policy](https://livetickr.com/privacy).
 
 == Installation ==
 
@@ -47,7 +48,7 @@ Service provided by Livetickr: [terms](https://livetickr.com/terms) — [privacy
 
 = Where do I find the ticker ID? =
 
-Open the ticker in your Livetickr dashboard and choose *Embed*. The ID is the twelve-character code in the snippet, and you can paste the whole snippet into the block — the plugin reads the ID out of it.
+Open the ticker in your Livetickr dashboard and choose *Embed*. The ID is the twelve-character code in the snippet, and you can paste the whole snippet into the block: the plugin reads the ID out of it.
 
 The number in the dashboard's own address bar is an internal ID and cannot be embedded.
 
@@ -61,11 +62,15 @@ Yes. Each block or shortcode renders its own ticker, where you placed it.
 
 = Does the ticker work with a caching plugin? =
 
-Yes. The plugin marks its script so that the common optimisation plugins do not move, combine or delay it — that placement is what tells the ticker where on the page it belongs.
+Yes. The plugin marks its script so that the common optimisation plugins do not move, combine or delay it. That placement is what tells the ticker where on the page it belongs.
 
 = Can I change how the ticker looks? =
 
 The ticker's appearance comes from Livetickr, not from this plugin, so it stays consistent everywhere you embed it. Colours, feed style and branding are set under *Appearance* in your Livetickr workspace.
+
+= Which languages are included? =
+
+English and German. German covers `de_DE`, `de_DE_formal`, `de_AT`, `de_CH` and `de_CH_informal`, each with the form of address WordPress uses for that locale, because WordPress does not fall back from a dialect to `de_DE` for plugin translations.
 
 = Can I point the plugin at a different Livetickr host? =
 

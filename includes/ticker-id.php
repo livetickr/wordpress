@@ -50,12 +50,12 @@ function livetickr_ticker_id_from_input( $input ) {
 	if ( preg_match( '/^\d+$/', $input ) || preg_match( '#/tickers/\d+#', $input ) ) {
 		return new WP_Error(
 			'livetickr_internal_id',
-			__( 'That is the internal ID from the dashboard URL, which cannot be embedded. The ticker ID is in the ticker\'s Embed dialog.', 'livetickr' )
+			__( 'That is the internal ID from the dashboard URL, which cannot be embedded. The ticker ID is in the ticker’s Embed dialog.', 'livetickr' )
 		);
 	}
 
 	return new WP_Error(
 		'livetickr_invalid',
-		__( 'That does not look like a ticker ID. Expected 12 letters and digits, or the snippet from the ticker\'s Embed dialog.', 'livetickr' )
+		__( 'That does not look like a ticker ID. Expected 12 letters and digits, or the snippet from the ticker’s Embed dialog.', 'livetickr' )
 	);
 }

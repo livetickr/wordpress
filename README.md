@@ -22,7 +22,7 @@ This plugin wraps the same snippet in something an editor can actually use:
 - WordPress 6.3 or newer, PHP 7.4 or newer
 - A Livetickr account with a published ticker
 - **This site's domain registered in your Livetickr workspace.** Tickers are only served on
-  registered domains — until yours is registered the ticker stays empty on the page. This is
+  registered domains. Until yours is registered the ticker stays empty on the page. This is
   the single most common reason an embed looks broken.
 
 ## Usage
@@ -34,7 +34,7 @@ Embed dialog.
 
 The editor shows a card rather than the ticker itself. That is not a shortcut: the block
 editor renders inside a sandboxed frame, which reports no origin, and Livetickr authorises
-embeds by origin — so the frame cannot show a live feed at all. The ticker appears on the
+embeds by origin, so the frame cannot show a live feed at all. The ticker appears on the
 published page.
 
 ### Shortcode
@@ -64,7 +64,7 @@ define( 'LIVETICKR_CDN_URL', 'https://cdn.example.com' );
 ```
 
 Defaults to `https://cdn.livetickr.io`. Whichever host serves the loader also receives the feed
-requests it makes — `embed.js` derives the feed URL from its own script `src` — so this one
+requests it makes, because `embed.js` derives the feed URL from its own script `src`, so this one
 value moves the whole reader surface. That makes it the knob for pointing an install at
 staging, at the application directly, or at a customer's own CNAME.
 
@@ -109,9 +109,45 @@ optimiser interferes, exclude `embed.js` from its JavaScript handling.
 
 Page caches are fine: the loader tag is static and the feed is fetched by the browser.
 
+## Translations
+
+Source strings are English. German ships with the plugin, in every locale a
+German-speaking site is actually set to, because WordPress does not fall back
+from a dialect to `de_DE` for plugin translations: a `de_AT` site with only
+`de_DE` installed gets English.
+
+| Locale | Address |
+| --- | --- |
+| `de_DE` | du |
+| `de_DE_formal` | Sie |
+| `de_AT` | du |
+| `de_CH` | Sie |
+| `de_CH_informal` | du |
+
+Which pronoun belongs to which locale is WordPress's convention, not ours, and
+it is not consistent between `de_DE` and `de_CH`. Swiss German drops the
+eszett; no current string contains one, so those files are byte-identical to
+their source. Watch for it when adding strings.
+
+Each locale needs three files: the `.po` to edit, the `.mo` that PHP reads, and
+a `.json` for the block editor's JavaScript. The JSON filename carries an MD5
+of the script's path relative to the plugin (`blocks/livetickr/index.js`),
+which is how `load_script_textdomain()` finds it. Regenerate all three after
+changing strings:
+
+```bash
+wp i18n make-pot . languages/livetickr.pot --slug=livetickr --domain=livetickr
+# edit languages/livetickr-*.po
+wp i18n make-mo languages/
+wp i18n make-json languages/ --no-purge --pretty-print
+```
+
+Leave a `msgstr` empty to fall back to the source. That is deliberate for the
+brand name and the URLs, which must not be translated.
+
 ## Development
 
-The plugin has no build step — `index.js` runs against the `wp.*` globals — so a checkout is
+The plugin has no build step. `index.js` runs against the `wp.*` globals, so a checkout is
 installable as-is.
 
 ```bash
